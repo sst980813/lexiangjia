@@ -1,0 +1,144 @@
+<!--community.wxml-->
+<view class="page-container">
+  <navigation-bar title="社区" back="{{false}}" color="#8B5A3C" background="#F7E6D3"></navigation-bar>
+  
+  <!-- 主要内容区域 -->
+  <view class="main-content {{safeAreaClass}}" style="{{safeAreaStyle}}">
+    <scroll-view class="scroll-container" scroll-y type="list">
+      
+      <!-- 顶部导航切换 -->
+      <view class="tab-nav">
+        <view class="nav-item {{currentTab == 0 ? 'active' : ''}}" bindtap="onNavTap" data-index="0">
+          <text class="nav-text">兴趣社群</text>
+        </view>
+        <view class="nav-item {{currentTab == 1 ? 'active' : ''}}" bindtap="onNavTap" data-index="1">
+          <text class="nav-text">主题活动</text>
+        </view>
+      </view>
+      
+      <!-- 兴趣社群内容 -->
+      <view class="content-section" wx:if="{{currentTab == 0}}">
+        
+        <!-- 我的社群 -->
+        <view class="my-groups-section" wx:if="{{myGroups.length > 0}}">
+          <view class="section-header">
+            <text class="section-title">我的社群</text>
+          </view>
+          <view class="groups-scroll">
+            <view class="group-item my-group" wx:for="{{myGroups}}" wx:key="id" bindtap="onGroupTap" data-group="{{item}}">
+              <view class="group-icon">{{item.icon}}</view>
+              <text class="group-name">{{item.name}}</text>
+              <text class="group-members">{{item.memberCount}}人</text>
+            </view>
+          </view>
+        </view>
+        
+        <!-- 推荐社群 -->
+        <view class="groups-section">
+          <view class="section-header">
+            <text class="section-title">推荐社群</text>
+            <text class="section-subtitle">找到志同道合的朋友</text>
+          </view>
+          
+          <view class="groups-grid">
+            <view class="group-card" wx:for="{{interestGroups}}" wx:key="id" bindtap="onGroupDetailTap" data-group="{{item}}">
+              <view class="group-header">
+                <view class="group-icon-large">{{item.icon}}</view>
+                <view class="group-info">
+                  <text class="group-title">{{item.name}}</text>
+                  <text class="group-desc">{{item.description}}</text>
+                  <view class="group-meta">
+                    <text class="member-count">👥 {{item.memberCount}}人</text>
+                    <text class="activity-level">🔥 {{item.activityLevel}}</text>
+                  </view>
+                </view>
+              </view>
+              
+              <!-- 最新动态预览 -->
+              <view class="recent-post" wx:if="{{item.recentPost}}">
+                <text class="post-content">{{item.recentPost.content}}</text>
+                <text class="post-time">{{item.recentPost.time}}</text>
+              </view>
+              
+              <view class="group-actions">
+                <button class="join-btn {{item.joined ? 'joined' : ''}}" bindtap="onJoinGroup" data-group="{{item}}" catchtap="true">
+                  {{item.joined ? '已加入' : '申请加入'}}
+                </button>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 主题活动内容 -->
+      <view class="content-section" wx:if="{{currentTab == 1}}">
+        
+        <!-- 我的活动 -->
+        <view class="my-activities-section" wx:if="{{myActivities.length > 0}}">
+          <view class="section-header">
+            <text class="section-title">我的活动</text>
+          </view>
+          <view class="activity-item my-activity" wx:for="{{myActivities}}" wx:key="id" bindtap="onActivityTap" data-activity="{{item}}">
+            <view class="activity-status {{item.status}}">{{item.statusText}}</view>
+            <text class="activity-title">{{item.title}}</text>
+            <text class="activity-time">📅 {{item.time}}</text>
+          </view>
+        </view>
+        
+        <!-- 推荐活动 -->
+        <view class="activities-section">
+          <view class="section-header">
+            <text class="section-title">精彩活动</text>
+            <text class="section-subtitle">丰富您的退休生活</text>
+          </view>
+          
+          <view class="activities-list">
+            <view class="activity-card" wx:for="{{themeActivities}}" wx:key="id" bindtap="onActivityDetailTap" data-activity="{{item}}">
+              <view class="activity-image">
+                <image src="{{item.image}}" mode="aspectFill"></image>
+                <view class="activity-type">{{item.type}}</view>
+              </view>
+              
+              <view class="activity-content">
+                <text class="activity-title">{{item.title}}</text>
+                <text class="activity-desc">{{item.description}}</text>
+                
+                <view class="activity-details">
+                  <view class="detail-item">
+                    <text class="detail-label">📅 时间</text>
+                    <text class="detail-value">{{item.time}}</text>
+                  </view>
+                  <view class="detail-item">
+                    <text class="detail-label">📍 地点</text>
+                    <text class="detail-value">{{item.location}}</text>
+                  </view>
+                  <view class="detail-item">
+                    <text class="detail-label">👥 人数</text>
+                    <text class="detail-value">{{item.participants}}/{{item.maxParticipants}}</text>
+                  </view>
+                  <view class="detail-item" wx:if="{{item.needCompanion}}">
+                    <text class="companion-tag">👨‍👩‍👧‍👦 建议家属陪同</text>
+                  </view>
+                </view>
+                
+                <view class="activity-actions">
+                  <button class="participate-btn {{item.participated ? 'participated' : ''}}" bindtap="onParticipateActivity" data-activity="{{item}}" catchtap="true">
+                    {{item.participated ? '已报名' : '立即报名'}}
+                  </button>
+                  <view class="activity-price" wx:if="{{item.price > 0}}">
+                    <text class="price-label">费用</text>
+                    <text class="price-value">¥{{item.price}}</text>
+                  </view>
+                  <view class="activity-price free" wx:else>
+                    <text class="price-value">免费</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      
+    </scroll-view>
+  </view>
+</view>

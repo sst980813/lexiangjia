@@ -1,11 +1,11 @@
 {
-  "libVersion": "2.32.3",
+  "libVersion": "3.10.0",
   "projectname": "enjoying-home",
   "setting": {
     "urlCheck": true,
     "coverView": false,
     "lazyloadPlaceholderEnable": false,
-    "skylineRenderEnable": true,
+    "skylineRenderEnable": false,
     "preloadBackgroundData": false,
     "autoAudits": false,
     "useApiHook": true,

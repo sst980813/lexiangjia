@@ -1,14 +1,17 @@
 // index.ts
-// 获取应用实例
-const app = getApp<IAppOption>()
 
 Component({
   data: {
     // Banner图片
-    bannerImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+    // bannerImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+    bannerImage:'../../public/img/banner.jpg',
     
     // 当前选中的底部菜单
     currentTab: 0,
+    
+    // 安全区域相关
+    safeAreaClass: '',
+    safeAreaStyle: '',
     
     // 旅游列表数据
     travelList: [
@@ -18,7 +21,7 @@ Component({
         location: '江苏苏州',
         price: '688',
         rating: '4.8',
-        image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+        image: '../../public/img/luzhi.jpg'
       },
       {
         id: 2,
@@ -26,15 +29,15 @@ Component({
         location: '江苏苏州',
         price: '758',
         rating: '4.9',
-        image: 'https://images.unsplash.com/photo-1580837119756-563d608dd119?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+        image: '../../public/img/zhouzhuang.jpg'
       },
       {
         id: 3,
-        title: '乐山建为小火车',
+        title: '乐山犍为小火车',
         location: '四川乐山',
         price: '899',
         rating: '4.7',
-        image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+        image: '../../public/img/jianwei.jpg'
       },
       {
         id: 4,
@@ -42,7 +45,7 @@ Component({
         location: '黑龙江伊春',
         price: '1288',
         rating: '4.9',
-        image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+        image: '../../public/img/xiaoxing.jpeg'
       }
     ]
   },
@@ -93,22 +96,49 @@ Component({
       })
     },
     
-    // 底部菜单点击事件
-    onTabTap(e: any) {
-      const index = e.currentTarget.dataset.index
-      console.log('点击了底部菜单:', index)
-      
-      this.setData({
-        currentTab: index
-      })
-      
-      const tabNames = ['首页', '活动', '我的']
-      if (index !== 0) {
-        wx.showToast({
-          title: `${tabNames[index]}页面开发中`,
-          icon: 'none',
-          duration: 2000
-        })
+
+    
+    // 初始化安全区域
+    initSafeArea() {
+      try {
+        const systemInfo = wx.getSystemInfoSync()
+        console.log('系统信息:', systemInfo)
+        
+        const { model, screenHeight, safeArea } = systemInfo
+        let safeAreaBottom = 0
+        
+        // 优先使用系统提供的safeArea信息
+        if (safeArea && safeArea.bottom && screenHeight) {
+          safeAreaBottom = screenHeight - safeArea.bottom
+          console.log('safeArea.bottom:', safeArea.bottom, 'screenHeight:', screenHeight)
+        }
+        
+        // 如果系统值不可靠或为负数，使用设备型号判断
+        if (safeAreaBottom <= 0 && model && model.includes('iPhone')) {
+          if (model.includes('iPhone X') || model.includes('iPhone 11') || 
+              model.includes('iPhone 12') || model.includes('iPhone 13') || 
+              model.includes('iPhone 14') || model.includes('iPhone 15')) {
+            safeAreaBottom = 34 // iPhone X系列的标准安全区域高度
+          }
+        }
+        
+        console.log('底部安全区域高度:', safeAreaBottom)
+        
+        // 只有在合理范围内才应用安全距离
+        if (safeAreaBottom > 0 && safeAreaBottom <= 50) {
+          const safeAreaBottomPx = safeAreaBottom * 2 + 'rpx'
+          
+          this.setData({
+            safeAreaClass: 'safe-area',
+            safeAreaStyle: `--safe-area-bottom: ${safeAreaBottomPx};`
+          })
+          
+          console.log('已设置安全区域:', safeAreaBottomPx)
+        } else {
+          console.log('无需设置安全区域，值:', safeAreaBottom)
+        }
+      } catch (error) {
+        console.error('获取系统信息失败:', error)
       }
     }
   },
@@ -117,6 +147,7 @@ Component({
   lifetimes: {
     attached() {
       console.log('主页组件已加载')
+      this.initSafeArea()
     }
   }
 })

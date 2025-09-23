@@ -1,0 +1,105 @@
+<!--profile.wxml-->
+<view class="page-container">
+  <navigation-bar title="我的" back="{{false}}" color="#8B5A3C" background="#F7E6D3"></navigation-bar>
+  
+  <!-- 主要内容区域 -->
+  <view class="main-content">
+    <scroll-view class="scroll-container" scroll-y type="list">
+      
+      <!-- 用户信息区域 -->
+      <view class="user-section">
+        <view class="user-info">
+          <image class="user-avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+          <text class="user-name">{{userInfo.nickName || 'Franky'}}</text>
+        </view>
+        
+        <!-- 统计数据 -->
+        <view class="stats-row">
+          <view class="stat-item">
+            <text class="stat-number">{{userStats.credits}}</text>
+            <text class="stat-label">优惠券</text>
+          </view>
+          <view class="stat-item">
+            <text class="stat-number">{{userStats.balance}}</text>
+            <text class="stat-label">账户卡余额</text>
+          </view>
+          <view class="stat-item">
+            <text class="stat-number">{{userStats.points}}</text>
+            <text class="stat-label">我的积分</text>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 会员权益卡片 -->
+      <view class="member-card" bindtap="onMemberTap">
+        <view class="member-content">
+          <view class="member-text">
+            <text class="member-title">会员专享权益等你领取</text>
+            <text class="member-subtitle">请注册利享不停</text>
+          </view>
+        </view>
+        <view class="member-action">
+          <text class="action-text">立即激活</text>
+        </view>
+      </view>
+      
+      <!-- 功能菜单区域 -->
+      <view class="menu-section">
+        <view class="menu-row">
+          <view class="menu-item" bindtap="onMenuTap" data-type="wallet">
+            <view class="menu-icon wallet-icon">💳</view>
+            <text class="menu-text">待付款</text>
+          </view>
+          <view class="menu-item" bindtap="onMenuTap" data-type="shipped">
+            <view class="menu-icon shipped-icon">✅</view>
+            <text class="menu-text">待出行</text>
+          </view>
+          <view class="menu-item" bindtap="onMenuTap" data-type="comment">
+            <view class="menu-icon comment-icon">💬</view>
+            <text class="menu-text">待评价</text>
+          </view>
+          <view class="menu-item" bindtap="onMenuTap" data-type="refund">
+            <view class="menu-icon refund-icon">¥</view>
+            <text class="menu-text">售后/退款</text>
+          </view>
+          <view class="menu-item" bindtap="onMenuTap" data-type="orders">
+            <view class="menu-icon orders-icon">📋</view>
+            <text class="menu-text">全部订单</text>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 常用工具区域 -->
+      <view class="tools-section">
+        <view class="section-title">常用工具</view>
+        <view class="tools-grid">
+          <view class="tool-item" bindtap="onToolTap" data-type="info">
+            <view class="tool-icon info-icon">📄</view>
+            <text class="tool-text">常用信息</text>
+          </view>
+          <view class="tool-item" bindtap="onToolTap" data-type="shop">
+            <view class="tool-icon shop-icon">🏪</view>
+            <text class="tool-text">我的主页</text>
+          </view>
+          <view class="tool-item" bindtap="onToolTap" data-type="browser">
+            <view class="tool-icon browser-icon">🌐</view>
+            <text class="tool-text">浏览足迹</text>
+          </view>
+          <view class="tool-item" bindtap="onToolTap" data-type="service">
+            <view class="tool-icon service-icon">🎧</view>
+            <text class="tool-text">联系客服</text>
+          </view>
+          <view class="tool-item" bindtap="onToolTap" data-type="collect">
+            <view class="tool-icon collect-icon">💡</view>
+            <text class="tool-text">收藏路线</text>
+          </view>
+          <view class="tool-item" bindtap="onToolTap" data-type="settings">
+            <view class="tool-icon settings-icon">⚙️</view>
+            <text class="tool-text">账户设置</text>
+          </view>
+        </view>
+      </view>
+      
+    </scroll-view>
+  </view>
+</view>

@@ -1,0 +1,245 @@
+/**profile.less**/
+page {
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.page-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* 固定顶部导航栏 */
+navigation-bar {
+  background: #F7E6D3; /* 柔和的浅橙色 */
+  color: #8B5A3C; /* 深橙色文字 */
+}
+
+/* 主要内容区域 */
+.main-content {
+  flex: 1;
+  background-color: #f5f5f5;
+  overflow: hidden;
+}
+
+.scroll-container {
+  height: 100%;
+  width: 100%;
+}
+
+/* 用户信息区域 */
+.user-section {
+  background: #F7E6D3;
+  padding: 40rpx 30rpx 60rpx;
+  color: #8B5A3C;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 60rpx;
+}
+
+.user-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin-right: 30rpx;
+  border: 4rpx solid rgba(255, 255, 255, 0.3);
+}
+
+.user-name {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #8B5A3C;
+}
+
+/* 统计数据 */
+.stats-row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-number {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #8B5A3C;
+  margin-bottom: 10rpx;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: #8B5A3C;
+}
+
+/* 会员权益卡片 */
+.member-card {
+  margin: 30rpx;
+  background: linear-gradient(135deg, #F4C2A1 0%, #E8B86D 100%); /* 柔和的橙色渐变 */
+  border-radius: 20rpx;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 8rpx 24rpx rgba(232, 184, 109, 0.2); /* 柔和的阴影 */
+}
+
+.member-content {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.member-icon {
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 20rpx;
+}
+
+.member-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.member-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #8B5A3C;
+  margin-bottom: 8rpx;
+}
+
+.member-subtitle {
+  font-size: 24rpx;
+  color: #8B5A3C;
+}
+
+.member-action {
+  background: #F7E6D3;
+  border-radius: 40rpx;
+  padding: 16rpx 32rpx;
+}
+
+.action-text {
+  font-size: 28rpx;
+  color: #D4A574; /* 柔和的橙色 */
+  font-weight: bold;
+}
+
+/* 功能菜单区域 */
+.menu-section {
+  background: white;
+  margin: 20rpx 30rpx;
+  border-radius: 20rpx;
+  padding: 40rpx 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.menu-row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.menu-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  margin-bottom: 15rpx;
+  background: #f8f9fa;
+}
+
+.menu-text {
+  font-size: 24rpx;
+  color: #333;
+  text-align: center;
+}
+
+/* 常用工具区域 */
+.tools-section {
+  background: white;
+  margin: 20rpx 30rpx;
+  border-radius: 20rpx;
+  padding: 40rpx 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 40rpx;
+}
+
+.tools-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20rpx;
+}
+
+.tool-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+}
+
+.tool-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  margin-bottom: 15rpx;
+  background: linear-gradient(135deg, #A8DADC 0%, #7FB3D3 100%); /* 默认浅蓝色 */
+}
+
+.info-icon {
+  background: linear-gradient(135deg, #A8DADC 0%, #7FB3D3 100%); /* 柔和浅蓝 */
+}
+
+.shop-icon {
+  background: linear-gradient(135deg, #F4C2A1 0%, #E8B86D 100%); /* 柔和橙色 */
+}
+
+.browser-icon {
+  background: linear-gradient(135deg, #C8A8D8 0%, #A8DADC 100%); /* 柔和紫蓝 */
+}
+
+.service-icon {
+  background: linear-gradient(135deg, #B8E6B8 0%, #A8DADC 100%); /* 柔和绿蓝 */
+}
+
+.collect-icon {
+  background: linear-gradient(135deg, #F4C2A1 0%, #D4A574 100%); /* 柔和金橙 */
+}
+
+.settings-icon {
+  background: linear-gradient(135deg, #D3D3D3 0%, #A8A8A8 100%); /* 柔和灰色 */
+}
+
+.tool-text {
+  font-size: 24rpx;
+  color: #333;
+  text-align: center;
+}

@@ -1,0 +1,412 @@
+/**community.less**/
+page {
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.page-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* 固定顶部导航栏 */
+navigation-bar {
+  background: #F7E6D3; /* 柔和的浅橙色 */
+  color: #8B5A3C; /* 深橙色文字 */
+}
+
+/* 主要内容区域 */
+.main-content {
+  flex: 1;
+  background-color: #f5f5f5;
+  overflow: hidden;
+}
+
+.scroll-container {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+/* 顶部导航切换 */
+.tab-nav {
+  display: flex;
+  background: white;
+  margin: 20rpx 30rpx;
+  border-radius: 50rpx;
+  padding: 8rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.nav-item {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx;
+  border-radius: 40rpx;
+  transition: all 0.3s ease;
+}
+
+.nav-item.active {
+  background: linear-gradient(135deg, #A8DADC 0%, #7FB3D3 100%);
+}
+
+.nav-text {
+  font-size: 32rpx;
+  color: #666;
+  font-weight: 500;
+}
+
+.nav-item.active .nav-text {
+  color: white;
+  font-weight: bold;
+}
+
+/* 内容区域 */
+.content-section {
+  padding: 0 30rpx;
+}
+
+/* 区块标题 */
+.section-header {
+  margin: 40rpx 0 30rpx;
+}
+
+.section-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.section-subtitle {
+  font-size: 26rpx;
+  color: #666;
+}
+
+/* 我的社群横向滚动 */
+.my-groups-section {
+  margin-bottom: 40rpx;
+}
+
+.groups-scroll {
+  display: flex;
+  gap: 10rpx;
+  overflow-x: auto;
+
+}
+
+.my-group {
+  display: inline-block;
+  width: 180rpx;
+  margin-right: 20rpx;
+  background: white;
+  border-radius: 20rpx;
+  padding: 30rpx 20rpx;
+  text-align: center;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.my-group .group-icon {
+  font-size: 60rpx;
+  margin-bottom: 15rpx;
+}
+
+.my-group .group-name {
+  font-size: 26rpx;
+  color: #333;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.my-group .group-members {
+  font-size: 22rpx;
+  color: #999;
+}
+
+/* 社群网格 */
+.groups-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx;
+}
+
+.group-card {
+  background: white;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.group-header {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20rpx;
+}
+
+.group-icon-large {
+  font-size: 80rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.group-info {
+  flex: 1;
+}
+
+.group-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.group-desc {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.5;
+  display: block;
+  margin-bottom: 15rpx;
+}
+
+.group-meta {
+  display: flex;
+  gap: 20rpx;
+}
+
+.member-count,
+.activity-level {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 最新动态预览 */
+.recent-post {
+  background: #f8f9fa;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.post-content {
+  font-size: 26rpx;
+  color: #555;
+  line-height: 1.4;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.post-time {
+  font-size: 22rpx;
+  color: #999;
+}
+
+/* 社群操作按钮 */
+.group-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.join-btn {
+  background: linear-gradient(135deg, #A8DADC 0%, #7FB3D3 100%);
+  color: white;
+  border: none;
+  border-radius: 40rpx;
+  padding: 16rpx 32rpx;
+  font-size: 26rpx;
+  font-weight: 500;
+}
+
+.join-btn.joined {
+  background: #e9ecef;
+  color: #6c757d;
+}
+
+/* 我的活动 */
+.my-activities-section {
+  margin-bottom: 40rpx;
+}
+
+.my-activity {
+  background: white;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.activity-status {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  color: white;
+}
+
+.activity-status.upcoming {
+  background: #28a745;
+}
+
+.activity-status.ongoing {
+  background: #ffc107;
+  color: #333;
+}
+
+.activity-status.completed {
+  background: #6c757d;
+}
+
+.my-activity .activity-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 10rpx;
+  padding-right: 120rpx;
+}
+
+.my-activity .activity-time {
+  font-size: 24rpx;
+  color: #666;
+}
+
+/* 活动列表 */
+.activities-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx;
+}
+
+.activity-card {
+  background: white;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.activity-image {
+  position: relative;
+  height: 300rpx;
+}
+
+.activity-image image {
+  width: 100%;
+  height: 100%;
+}
+
+.activity-type {
+  position: absolute;
+  top: 20rpx;
+  left: 20rpx;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+}
+
+.activity-content {
+  padding: 30rpx;
+}
+
+.activity-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 15rpx;
+}
+
+.activity-desc {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.5;
+  display: block;
+  margin-bottom: 25rpx;
+}
+
+/* 活动详情 */
+.activity-details {
+  margin-bottom: 25rpx;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15rpx;
+}
+
+.detail-label {
+  font-size: 24rpx;
+  color: #666;
+  width: 120rpx;
+  flex-shrink: 0;
+}
+
+.detail-value {
+  font-size: 26rpx;
+  color: #333;
+  flex: 1;
+}
+
+.companion-tag {
+  background: linear-gradient(135deg, #F4C2A1 0%, #E8B86D 100%);
+  color: white;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  font-weight: 500;
+}
+
+/* 活动操作 */
+.activity-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.participate-btn {
+  background: linear-gradient(135deg, #A8DADC 0%, #7FB3D3 100%);
+  color: white;
+  border: none;
+  border-radius: 40rpx;
+  padding: 20rpx 40rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.participate-btn.participated {
+  background: #e9ecef;
+  color: #6c757d;
+}
+
+.activity-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.price-label {
+  font-size: 22rpx;
+  color: #999;
+  margin-bottom: 5rpx;
+}
+
+.price-value {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #D4A574;
+}
+
+.activity-price.free .price-value {
+  color: #28a745;
+}
+
+
