@@ -147,7 +147,7 @@
         <text class="price-unit">/人/月</text>
       </view>
       <button class="book-btn" bindtap="onBookNow">
-        <text class="book-text">立即预订</text>
+        <text>立即预订</text>
       </button>
     </view>
   </view>

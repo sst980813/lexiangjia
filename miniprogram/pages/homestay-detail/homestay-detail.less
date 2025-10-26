@@ -1,0 +1,377 @@
+/**homestay-detail.less**/
+page {
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.page-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* 固定顶部导航栏 */
+navigation-bar {
+  background: #F7E6D3;
+  color: #8B5A3C;
+}
+
+/* 主要内容区域 */
+.main-content {
+  flex: 1;
+  background-color: #f5f5f5;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.scroll-container {
+  flex: 1;
+  overflow: auto;
+}
+
+/* 民宿详情 */
+.homestay-detail {
+  background: white;
+  margin-bottom: 20rpx;
+}
+
+/* 图片轮播 */
+.image-carousel {
+  position: relative;
+  height: 500rpx;
+}
+
+.carousel-swiper {
+  height: 100%;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  background-color: #f0f0f0;
+}
+
+.vip-badge {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  color: white;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  font-weight: bold;
+  box-shadow: 0 4rpx 12rpx rgba(255, 215, 0, 0.3);
+}
+
+/* 民宿基本信息 */
+.homestay-info {
+  padding: 30rpx;
+}
+
+.homestay-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15rpx;
+}
+
+.homestay-name {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  flex: 1;
+  margin-right: 20rpx;
+}
+
+.homestay-rating {
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  color: white;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4rpx 12rpx rgba(255, 215, 0, 0.3);
+}
+
+.rating-star {
+  font-size: 20rpx;
+  margin-right: 5rpx;
+}
+
+.rating-score {
+  font-size: 24rpx;
+  font-weight: bold;
+}
+
+.homestay-location {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 15rpx;
+  display: block;
+}
+
+.homestay-description {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+/* 民宿标签 */
+.homestay-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10rpx;
+}
+
+.homestay-tag {
+  background: linear-gradient(135deg, #8B5A3C, #A67C52);
+  color: white;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  font-weight: 500;
+  box-shadow: 0 4rpx 12rpx rgba(139, 90, 60, 0.3);
+}
+
+/* 价格信息 */
+.price-section {
+  background: white;
+  margin-bottom: 20rpx;
+  padding: 30rpx;
+}
+
+.price-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.member-badge {
+  background: linear-gradient(135deg, #8B5A3C, #A67C52);
+  color: white;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  font-weight: 500;
+}
+
+.price-details {
+  display: flex;
+  flex-direction: column;
+  gap: 15rpx;
+}
+
+.price-item {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.price-item.original {
+  opacity: 0.6;
+}
+
+.price-label {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.price-value {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #8B5A3C;
+}
+
+.price-unit {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.discount-info {
+  background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+  color: white;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+  align-self: flex-start;
+  font-size: 22rpx;
+  font-weight: 500;
+}
+
+/* 特色服务 */
+.features-section {
+  background: white;
+  margin-bottom: 20rpx;
+  padding: 30rpx;
+}
+
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15rpx;
+  margin-top: 20rpx;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 15rpx;
+}
+
+.feature-icon {
+  font-size: 24rpx;
+}
+
+.feature-text {
+  font-size: 26rpx;
+  color: #333;
+}
+
+/* 设施信息 */
+.facilities-section {
+  background: white;
+  margin-bottom: 20rpx;
+  padding: 30rpx;
+}
+
+.facilities-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+  margin-top: 20rpx;
+}
+
+.facility-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(25% - 15rpx);
+  padding: 20rpx 10rpx;
+  background: #f8f9fa;
+  border-radius: 12rpx;
+}
+
+.facility-icon {
+  font-size: 32rpx;
+  margin-bottom: 8rpx;
+}
+
+.facility-name {
+  font-size: 22rpx;
+  color: #666;
+  text-align: center;
+}
+
+/* 用户评价 */
+.reviews-section {
+  background: white;
+  margin-bottom: 20rpx;
+  padding: 30rpx;
+}
+
+.reviews-list {
+  margin-top: 20rpx;
+}
+
+.review-item {
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.review-item:last-child {
+  border-bottom: none;
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15rpx;
+}
+
+.review-avatar {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  margin-right: 15rpx;
+  background-color: #f0f0f0;
+}
+
+.review-user {
+  flex: 1;
+}
+
+.review-name {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 5rpx;
+}
+
+.review-time {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.review-rating {
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  color: white;
+  padding: 6rpx 12rpx;
+  border-radius: 15rpx;
+  display: flex;
+  align-items: center;
+}
+
+.review-content {
+  font-size: 26rpx;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* 底部操作栏 */
+.action-bar {
+  background: white;
+  padding: 20rpx 30rpx;
+  border-top: 1rpx solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-label {
+  font-size: 22rpx;
+  color: #666;
+  margin-bottom: 5rpx;
+}
+
+.contact-phone {
+  font-size: 26rpx;
+  color: #8B5A3C;
+  font-weight: bold;
+}
+
+.book-btn {
+  background: linear-gradient(135deg, #8B5A3C, #A67C52);
+  color: white;
+  border: none;
+  border-radius: 25rpx;
+  padding: 20rpx 40rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+}

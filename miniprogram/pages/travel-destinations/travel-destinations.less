@@ -95,6 +95,173 @@ navigation-bar {
   border-color: #8B5A3C;
 }
 
+/* 会员民宿列表区域 */
+.homestay-section {
+  background: white;
+  margin-bottom: 20rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.homestay-list {
+  padding: 0 30rpx;
+}
+
+.homestay-item {
+  display: flex;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.homestay-item:last-child {
+  border-bottom: none;
+}
+
+.homestay-item:active {
+  background: #f8f9fa;
+  transform: scale(0.98);
+}
+
+.homestay-image {
+  width: 220rpx;
+  height: 160rpx;
+  border-radius: 20rpx;
+  margin-right: 30rpx;
+  background-color: #f0f0f0;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+.homestay-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.homestay-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15rpx;
+}
+
+.homestay-name {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #333;
+  flex: 1;
+  margin-right: 20rpx;
+}
+
+.homestay-rating {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(255, 215, 0, 0.3);
+}
+
+.homestay-location {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 15rpx;
+}
+
+.homestay-description {
+  font-size: 26rpx;
+  color: #333;
+  line-height: 1.4;
+  margin-bottom: 15rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.homestay-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10rpx;
+  margin-bottom: 20rpx;
+}
+
+.homestay-tag {
+  padding: 8rpx 16rpx;
+  background: linear-gradient(135deg, #8B5A3C, #A67C52);
+  color: white;
+  font-size: 22rpx;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 6rpx rgba(139, 90, 60, 0.3);
+}
+
+.homestay-tag-text {
+  color: white;
+}
+
+.homestay-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.homestay-footer .price-info {
+  display: flex;
+  align-items: baseline;
+}
+
+.homestay-footer .price-label {
+  font-size: 24rpx;
+  color: #8B5A3C;
+  margin-right: 10rpx;
+  font-weight: bold;
+}
+
+.homestay-footer .price-value {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #8B5A3C;
+  text-shadow: 0 2rpx 4rpx rgba(139, 90, 60, 0.2);
+}
+
+.homestay-footer .price-unit {
+  font-size: 24rpx;
+  color: #8B5A3C;
+  margin-left: 5rpx;
+}
+
+.homestay-footer .discount-info {
+  background: linear-gradient(135deg, #ff4757, #ff6b7a);
+  color: white;
+  padding: 10rpx 20rpx;
+  border-radius: 15rpx;
+  box-shadow: 0 4rpx 12rpx rgba(255, 71, 87, 0.3);
+}
+
+.homestay-footer .discount-text {
+  font-size: 22rpx;
+  font-weight: bold;
+}
+
+/* 会员专属标识 */
+.homestay-item::before {
+  content: 'VIP';
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  color: #8B5A3C;
+  font-size: 20rpx;
+  font-weight: bold;
+  padding: 6rpx 12rpx;
+  border-radius: 10rpx;
+  box-shadow: 0 2rpx 8rpx rgba(255, 215, 0, 0.4);
+  z-index: 1;
+}
+
 /* 目的地列表区域 */
 .destinations-section {
   background: white;

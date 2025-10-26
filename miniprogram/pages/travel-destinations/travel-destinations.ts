@@ -1,11 +1,121 @@
 // travel-destinations.ts
+
+interface Destination {
+  id: number;
+  name: string;
+  location: string;
+  description: string;
+  image: string;
+  rating: string;
+  startPrice: string;
+  discount: string;
+  tags: string[];
+  region: string;
+  features: string[];
+}
+
+interface Homestay {
+  id: number;
+  name: string;
+  location: string;
+  description: string;
+  image: string;
+  rating: string;
+  memberPrice: string;
+  originalPrice: string;
+  discount: string;
+  tags: string[];
+  features: string[];
+}
+
 Page({
   data: {
     safeAreaClass: '',
     safeAreaStyle: '',
     searchKeyword: '',
-    currentFilter: 'all',
+    currentFilter: 'homestay',
     filteredDestinations: [],
+    filteredHomestays: [],
+    homestays: [
+      {
+        id: 101,
+        name: '江南水乡民宿',
+        location: '江苏苏州',
+        description: '传统江南建筑风格，临水而居，体验江南水乡的宁静与优雅。提供茶艺体验、园林导览等服务。',
+        image: '../../public/img/suzhou-homestay.jpg',
+        rating: '4.9',
+        memberPrice: '288',
+        originalPrice: '388',
+        discount: '7.4',
+        tags: ['江南', '水乡', '传统', '茶艺'],
+        features: ['临水房', '茶艺体验', '园林导览', '传统早餐']
+      },
+      {
+        id: 102,
+        name: '山间温泉民宿',
+        location: '浙江莫干山',
+        description: '山间清幽，天然温泉，享受山林间的宁静时光。提供温泉SPA、山间徒步、有机餐饮等服务。',
+        image: '../../public/img/moganshan-homestay.jpg',
+        rating: '4.8',
+        memberPrice: '398',
+        originalPrice: '528',
+        discount: '7.5',
+        tags: ['温泉', '山间', '有机', 'SPA'],
+        features: ['温泉房', 'SPA服务', '山间徒步', '有机餐饮']
+      },
+      {
+        id: 103,
+        name: '海边度假民宿',
+        location: '福建厦门',
+        description: '面朝大海，春暖花开，享受海风轻抚的惬意时光。提供海鲜大餐、海边漫步、日出观赏等服务。',
+        image: '../../public/img/xiamen-homestay.jpg',
+        rating: '4.7',
+        memberPrice: '328',
+        originalPrice: '428',
+        discount: '7.7',
+        tags: ['海景', '度假', '海鲜', '日出'],
+        features: ['海景房', '海鲜大餐', '海边漫步', '日出观赏']
+      },
+      {
+        id: 104,
+        name: '古城文化民宿',
+        location: '云南丽江',
+        description: '纳西传统建筑，古城韵味浓厚，体验慢生活的美好。提供纳西文化体验、古城导览、手工艺品制作等服务。',
+        image: '../../public/img/lijiang-homestay.jpg',
+        rating: '4.8',
+        memberPrice: '268',
+        originalPrice: '358',
+        discount: '7.5',
+        tags: ['古城', '纳西', '文化', '手工艺'],
+        features: ['古城房', '文化体验', '古城导览', '手工艺制作']
+      },
+      {
+        id: 105,
+        name: '田园风光民宿',
+        location: '江西婺源',
+        description: '田园诗画，油菜花海，享受乡村的宁静与美好。提供田园采摘、农家美食、摄影服务等活动。',
+        image: '../../public/img/wuyuan-homestay.jpg',
+        rating: '4.6',
+        memberPrice: '228',
+        originalPrice: '308',
+        discount: '7.4',
+        tags: ['田园', '油菜花', '农家', '摄影'],
+        features: ['田园房', '田园采摘', '农家美食', '摄影服务']
+      },
+      {
+        id: 106,
+        name: '竹林雅居民宿',
+        location: '四川青城山',
+        description: '竹林深处，清幽雅致，体验道家的养生之道。提供太极教学、竹林漫步、养生茶饮等服务。',
+        image: '../../public/img/qingcheng-homestay.jpg',
+        rating: '4.9',
+        memberPrice: '358',
+        originalPrice: '468',
+        discount: '7.6',
+        tags: ['竹林', '道家', '养生', '太极'],
+        features: ['竹林房', '太极教学', '竹林漫步', '养生茶饮']
+      }
+    ],
     destinations: [
       {
         id: 1,
@@ -143,6 +253,7 @@ Page({
   onLoad() {
     this.setSafeArea();
     this.filterDestinations();
+    this.filterHomestays();
   },
 
   onShow() {
@@ -173,6 +284,7 @@ Page({
       searchKeyword: keyword
     });
     this.filterDestinations();
+    this.filterHomestays();
   },
 
   // 筛选条件变化
@@ -182,16 +294,17 @@ Page({
       currentFilter: filter
     });
     this.filterDestinations();
+    this.filterHomestays();
   },
 
   // 筛选目的地
   filterDestinations() {
     const { destinations, searchKeyword, currentFilter } = this.data;
-    let filtered = destinations;
+    let filtered: Destination[] = destinations;
 
     // 按关键词搜索
     if (searchKeyword) {
-      filtered = filtered.filter(item => 
+      filtered = filtered.filter((item: Destination) => 
         item.name.includes(searchKeyword) || 
         item.location.includes(searchKeyword) ||
         item.description.includes(searchKeyword) ||
@@ -199,13 +312,38 @@ Page({
       );
     }
 
-    // 按地区筛选
-    if (currentFilter !== 'all') {
-      filtered = filtered.filter(item => item.region === currentFilter);
+    // 只在选择精选目的地时显示
+    if (currentFilter !== 'destination') {
+      filtered = [];
     }
 
     this.setData({
-      filteredDestinations: filtered
+      filteredDestinations: filtered as any
+    });
+  },
+
+  // 筛选民宿
+  filterHomestays() {
+    const { homestays, searchKeyword, currentFilter } = this.data;
+    let filtered: Homestay[] = homestays;
+
+    // 按关键词搜索
+    if (searchKeyword) {
+      filtered = filtered.filter((item: Homestay) => 
+        item.name.includes(searchKeyword) || 
+        item.location.includes(searchKeyword) ||
+        item.description.includes(searchKeyword) ||
+        item.tags.some(tag => tag.includes(searchKeyword))
+      );
+    }
+
+    // 只在选择会员民宿时显示
+    if (currentFilter !== 'homestay') {
+      filtered = [];
+    }
+
+    this.setData({
+      filteredHomestays: filtered as any
     });
   },
 
@@ -214,6 +352,14 @@ Page({
     const destination = e.currentTarget.dataset.destination;
     wx.navigateTo({
       url: `/pages/travel-detail/travel-detail?id=${destination.id}`
+    });
+  },
+
+  // 点击民宿
+  onHomestayTap(e: any) {
+    const homestay = e.currentTarget.dataset.homestay;
+    wx.navigateTo({
+      url: `/pages/homestay-detail/homestay-detail?id=${homestay.id}`
     });
   }
 });

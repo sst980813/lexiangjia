@@ -1,0 +1,124 @@
+<!--homestay-detail.wxml-->
+<view class="page-container">
+  <navigation-bar title="民宿详情" color="#8B5A3C" background="#F7E6D3"></navigation-bar>
+  
+  <!-- 主要内容区域 -->
+  <view class="main-content">
+    <scroll-view class="scroll-container" scroll-y type="list">
+      
+      <!-- 民宿详情 -->
+      <view class="homestay-detail" wx:if="{{homestay}}">
+        
+        <!-- 民宿图片轮播 -->
+        <view class="image-carousel">
+          <swiper class="carousel-swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="3000" duration="500">
+            <swiper-item wx:for="{{homestay.images}}" wx:key="*this" wx:for-item="image">
+              <image class="carousel-image" src="{{image}}" mode="aspectFill" bindtap="onImageTap" data-image="{{image}}" data-images="{{homestay.images}}"></image>
+            </swiper-item>
+          </swiper>
+          <view class="vip-badge">VIP</view>
+        </view>
+        
+        <!-- 民宿基本信息 -->
+        <view class="homestay-info">
+          <view class="homestay-header">
+            <text class="homestay-name">{{homestay.name}}</text>
+            <view class="homestay-rating">
+              <text class="rating-star">⭐</text>
+              <text class="rating-score">{{homestay.rating}}</text>
+            </view>
+          </view>
+          
+          <text class="homestay-location">📍 {{homestay.location}}</text>
+          <text class="homestay-description">{{homestay.description}}</text>
+          
+          <!-- 民宿标签 -->
+          <view class="homestay-tags">
+            <view class="homestay-tag" wx:for="{{homestay.tags}}" wx:key="*this" wx:for-item="tag">
+              <text class="homestay-tag-text">{{tag}}</text>
+            </view>
+          </view>
+        </view>
+        
+        <!-- 价格信息 -->
+        <view class="price-section">
+          <view class="price-header">
+            <text class="section-title">价格信息</text>
+            <view class="member-badge">会员专享</view>
+          </view>
+          
+          <view class="price-details">
+            <view class="price-item">
+              <text class="price-label">会员价</text>
+              <text class="price-value">¥{{homestay.memberPrice}}</text>
+              <text class="price-unit">/晚</text>
+            </view>
+            <view class="price-item original">
+              <text class="price-label">原价</text>
+              <text class="price-value">¥{{homestay.originalPrice}}</text>
+              <text class="price-unit">/晚</text>
+            </view>
+            <view class="discount-info">
+              <text class="discount-text">会员{{homestay.discount}}折</text>
+            </view>
+          </view>
+        </view>
+        
+        <!-- 特色服务 -->
+        <view class="features-section">
+          <text class="section-title">特色服务</text>
+          <view class="features-list">
+            <view class="feature-item" wx:for="{{homestay.features}}" wx:key="*this" wx:for-item="feature">
+              <text class="feature-icon">✨</text>
+              <text class="feature-text">{{feature}}</text>
+            </view>
+          </view>
+        </view>
+        
+        <!-- 设施信息 -->
+        <view class="facilities-section">
+          <text class="section-title">设施信息</text>
+          <view class="facilities-grid">
+            <view class="facility-item" wx:for="{{facilities}}" wx:key="name">
+              <text class="facility-icon">{{item.icon}}</text>
+              <text class="facility-name">{{item.name}}</text>
+            </view>
+          </view>
+        </view>
+        
+        <!-- 用户评价 -->
+        <view class="reviews-section">
+          <text class="section-title">用户评价</text>
+          <view class="reviews-list">
+            <view class="review-item" wx:for="{{reviews}}" wx:key="id">
+              <view class="review-header">
+                <image class="review-avatar" src="{{item.user.avatar}}" mode="aspectFill"></image>
+                <view class="review-user">
+                  <text class="review-name">{{item.user.name}}</text>
+                  <text class="review-time">{{item.time}}</text>
+                </view>
+                <view class="review-rating">
+                  <text class="rating-star">⭐</text>
+                  <text class="rating-score">{{item.rating}}</text>
+                </view>
+              </view>
+              <text class="review-content">{{item.content}}</text>
+            </view>
+          </view>
+        </view>
+        
+      </view>
+      
+    </scroll-view>
+    
+    <!-- 底部操作栏 -->
+    <view class="action-bar">
+      <view class="contact-info">
+        <text class="contact-label">咨询电话</text>
+        <text class="contact-phone">400-123-4567</text>
+      </view>
+      <button class="book-btn" bindtap="onBookHomestay">立即预订</button>
+    </view>
+    
+  </view>
+</view>

@@ -10,7 +10,7 @@
         <view class="search-bar">
           <text class="search-icon">🔍</text>
           <input class="search-input" 
-                 placeholder="搜索目的地..." 
+                 placeholder="搜索民宿/目的地..." 
                  value="{{searchKeyword}}"
                  bindinput="onSearchInput" />
         </view>
@@ -20,32 +20,57 @@
       <view class="filter-section">
         <scroll-view class="filter-scroll" scroll-x>
           <view class="filter-tags">
-            <view class="filter-tag {{currentFilter === 'all' ? 'active' : ''}}" 
-                  bindtap="onFilterChange" data-filter="all">
-              全部
+            <view class="filter-tag {{currentFilter === 'homestay' ? 'active' : ''}}" 
+                  bindtap="onFilterChange" data-filter="homestay">
+              会员民宿
             </view>
-            <view class="filter-tag {{currentFilter === 'south' ? 'active' : ''}}" 
-                  bindtap="onFilterChange" data-filter="south">
-              南方
-            </view>
-            <view class="filter-tag {{currentFilter === 'north' ? 'active' : ''}}" 
-                  bindtap="onFilterChange" data-filter="north">
-              北方
-            </view>
-            <view class="filter-tag {{currentFilter === 'coast' ? 'active' : ''}}" 
-                  bindtap="onFilterChange" data-filter="coast">
-              海滨
-            </view>
-            <view class="filter-tag {{currentFilter === 'mountain' ? 'active' : ''}}" 
-                  bindtap="onFilterChange" data-filter="mountain">
-              山区
+            <view class="filter-tag {{currentFilter === 'destination' ? 'active' : ''}}" 
+                  bindtap="onFilterChange" data-filter="destination">
+              精选目的地
             </view>
           </view>
         </scroll-view>
       </view>
 
+      <!-- 会员民宿列表 -->
+      <view class="homestay-section" wx:if="{{currentFilter === 'homestay'}}">
+        <view class="section-header">
+          <text class="section-title">会员民宿</text>
+          <text class="section-count">共{{filteredHomestays.length}}个民宿</text>
+        </view>
+        
+        <view class="homestay-list">
+          <view class="homestay-item" 
+                wx:for="{{filteredHomestays}}" 
+                wx:key="id" 
+                bindtap="onHomestayTap" 
+                data-homestay="{{item}}">
+            <image class="homestay-image" src="{{item.image}}" mode="aspectFill"></image>
+            <view class="homestay-info">
+              <view class="homestay-header">
+                <text class="homestay-name">{{item.name}}</text>
+              </view>
+              <text class="homestay-location">📍 {{item.location}}</text>
+              <text class="homestay-description">{{item.description}}</text>
+              <view class="homestay-tags">
+                <view class="homestay-tag" wx:for="{{item.tags}}" wx:key="*this" wx:for-item="tag">
+                  <text class="homestay-tag-text">{{tag}}</text>
+                </view>
+              </view>
+              <view class="homestay-footer">
+                <view class="price-info">
+                  <text class="price-label">会员价</text>
+                  <text class="price-value">¥{{item.memberPrice}}</text>
+                  <text class="price-unit">/晚</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
       <!-- 目的地列表 -->
-      <view class="destinations-section">
+      <view class="destinations-section" wx:if="{{currentFilter === 'destination'}}">
         <view class="section-header">
           <text class="section-title">精选目的地</text>
           <text class="section-count">共{{filteredDestinations.length}}个目的地</text>
@@ -89,7 +114,7 @@
       </view>
 
       <!-- 空状态 -->
-      <view class="empty-state" wx:if="{{filteredDestinations.length === 0}}">
+      <view class="empty-state" wx:if="{{filteredDestinations.length === 0&&currentFilter === 'destination'}}">
         <text class="empty-icon">🔍</text>
         <text class="empty-text">暂无相关目的地</text>
         <text class="empty-desc">试试其他筛选条件</text>

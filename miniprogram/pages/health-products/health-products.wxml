@@ -25,21 +25,25 @@
                   bindtap="onFilterChange" data-filter="all">
               全部
             </view>
-            <view class="filter-tag {{currentFilter === 'supplement' ? 'active' : ''}}" 
-                  bindtap="onFilterChange" data-filter="supplement">
-              保健品
+            <view class="filter-tag {{currentFilter === 'smart' ? 'active' : ''}}" 
+                  bindtap="onFilterChange" data-filter="smart">
+              智能产品
             </view>
-            <view class="filter-tag {{currentFilter === 'equipment' ? 'active' : ''}}" 
-                  bindtap="onFilterChange" data-filter="equipment">
-              器械
+            <view class="filter-tag {{currentFilter === 'health' ? 'active' : ''}}" 
+                  bindtap="onFilterChange" data-filter="health">
+              康养保健
             </view>
-            <view class="filter-tag {{currentFilter === 'food' ? 'active' : ''}}" 
-                  bindtap="onFilterChange" data-filter="food">
-              食品
+            <view class="filter-tag {{currentFilter === 'clothing' ? 'active' : ''}}" 
+                  bindtap="onFilterChange" data-filter="clothing">
+              服饰类
             </view>
-            <view class="filter-tag {{currentFilter === 'medicine' ? 'active' : ''}}" 
-                  bindtap="onFilterChange" data-filter="medicine">
-              药品
+            <view class="filter-tag {{currentFilter === 'elderly' ? 'active' : ''}}" 
+                  bindtap="onFilterChange" data-filter="elderly">
+              助老适老
+            </view>
+            <view class="filter-tag {{currentFilter === 'other' ? 'active' : ''}}" 
+                  bindtap="onFilterChange" data-filter="other">
+              其它类
             </view>
           </view>
         </scroll-view>
