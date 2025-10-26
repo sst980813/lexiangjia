@@ -56,6 +56,46 @@ Component({
       const type = e.currentTarget.dataset.type
       console.log('点击了功能按钮:', type)
       
+      // 会员权益按钮跳转到会员权益页面
+      if (type === 'benefits') {
+        wx.navigateTo({
+          url: '/pages/member-benefits/member-benefits'
+        })
+        return
+      }
+      
+      // 旅居养老按钮跳转到目的地列表页面
+      if (type === 'living') {
+        wx.navigateTo({
+          url: '/pages/travel-destinations/travel-destinations'
+        })
+        return
+      }
+      
+      // 智慧养老按钮跳转到智慧养老页面
+      if (type === 'smart') {
+        wx.navigateTo({
+          url: '/pages/smart-care/smart-care'
+        })
+        return
+      }
+      
+      // 休闲养老按钮跳转到休闲养老页面
+      if (type === 'leisure') {
+        wx.navigateTo({
+          url: '/pages/leisure-care/leisure-care'
+        })
+        return
+      }
+      
+      // 康养产品按钮跳转到康养产品页面
+      if (type === 'product') {
+        wx.navigateTo({
+          url: '/pages/health-products/health-products'
+        })
+        return
+      }
+      
       wx.showToast({
         title: `${this.getButtonName(type)}功能开发中`,
         icon: 'none',
@@ -67,9 +107,12 @@ Component({
     getButtonName(type: string): string {
       const nameMap: { [key: string]: string } = {
         living: '旅居养老',
+        smart: '智慧养老',
         leisure: '休闲养老',
-        happy: '快乐养老',
-        member: '会员权益'
+        health: '养生之道',
+        member: '会员风采',
+        product: '康养产品',
+        benefits: '会员权益'
       }
       return nameMap[type] || '未知功能'
     },

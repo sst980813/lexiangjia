@@ -1,0 +1,91 @@
+<!--health-products.wxml-->
+<view class="page-container">
+  <navigation-bar title="康养产品" color="#8B5A3C" background="#F7E6D3"></navigation-bar>
+  
+  <!-- 主要内容区域 -->
+  <view class="main-content {{safeAreaClass}}">
+    <scroll-view class="scroll-container" scroll-y type="list">
+      
+      <!-- 搜索栏 -->
+      <view class="search-section">
+        <view class="search-bar">
+          <text class="search-icon">🔍</text>
+          <input class="search-input" 
+                 placeholder="搜索康养产品..." 
+                 value="{{searchKeyword}}"
+                 bindinput="onSearchInput" />
+        </view>
+      </view>
+
+      <!-- 筛选标签 -->
+      <view class="filter-section">
+        <scroll-view class="filter-scroll" scroll-x>
+          <view class="filter-tags">
+            <view class="filter-tag {{currentFilter === 'all' ? 'active' : ''}}" 
+                  bindtap="onFilterChange" data-filter="all">
+              全部
+            </view>
+            <view class="filter-tag {{currentFilter === 'supplement' ? 'active' : ''}}" 
+                  bindtap="onFilterChange" data-filter="supplement">
+              保健品
+            </view>
+            <view class="filter-tag {{currentFilter === 'equipment' ? 'active' : ''}}" 
+                  bindtap="onFilterChange" data-filter="equipment">
+              器械
+            </view>
+            <view class="filter-tag {{currentFilter === 'food' ? 'active' : ''}}" 
+                  bindtap="onFilterChange" data-filter="food">
+              食品
+            </view>
+            <view class="filter-tag {{currentFilter === 'medicine' ? 'active' : ''}}" 
+                  bindtap="onFilterChange" data-filter="medicine">
+              药品
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+
+      <!-- 产品列表 -->
+      <view class="products-section">
+        <view class="section-header">
+          <text class="section-title">康养产品</text>
+          <text class="section-count">共{{filteredProducts.length}}个产品</text>
+        </view>
+        
+        <view class="products-grid">
+          <view class="product-item" 
+                wx:for="{{filteredProducts}}" 
+                wx:key="id" 
+                bindtap="onProductTap" 
+                data-product="{{item}}">
+            <image class="product-image" src="{{item.image}}" mode="aspectFill"></image>
+            <view class="product-info">
+              <text class="product-name">{{item.name}}</text>
+              <text class="product-desc">{{item.description}}</text>
+              <view class="product-tags">
+                <text class="product-tag" wx:for="{{item.tags}}" wx:key="*this" wx:for-item="tag">
+                  {{tag}}
+                </text>
+              </view>
+              <view class="product-footer">
+                <view class="price-info">
+                  <text class="price-symbol">¥</text>
+                  <text class="price-value">{{item.price}}</text>
+                  <text class="price-unit" wx:if="{{item.unit}}">/{{item.unit}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 空状态 -->
+      <view class="empty-state" wx:if="{{filteredProducts.length === 0}}">
+        <text class="empty-icon">💊</text>
+        <text class="empty-text">暂无相关产品</text>
+        <text class="empty-desc">试试其他筛选条件</text>
+      </view>
+
+    </scroll-view>
+  </view>
+</view>

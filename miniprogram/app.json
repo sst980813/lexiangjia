@@ -3,7 +3,16 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/profile/profile",
-    "pages/community/community"
+    "pages/community/community",
+    "pages/member-benefits/member-benefits",
+    "pages/membership/membership",
+    "pages/travel-destinations/travel-destinations",
+    "pages/travel-detail/travel-detail",
+    "pages/smart-care/smart-care",
+    "pages/leisure-care/leisure-care",
+    "pages/health-products/health-products",
+    "pages/product-detail/product-detail",
+    "pages/shopping-cart/shopping-cart"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -39,6 +48,12 @@
         "text": "社区",
         "iconPath": "public/img/community.png",
         "selectedIconPath": "public/img/community-active.png"
+      },
+      {
+        "pagePath": "pages/shopping-cart/shopping-cart",
+        "text": "购物车",
+        "iconPath": "public/img/cart.png",
+        "selectedIconPath": "public/img/cart-active.png"
       },
       {
         "pagePath": "pages/profile/profile",

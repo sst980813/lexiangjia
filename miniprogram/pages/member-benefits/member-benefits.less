@@ -1,0 +1,236 @@
+/**member-benefits.less**/
+page {
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.page-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* 固定顶部导航栏 */
+navigation-bar {
+  background: #F7E6D3;
+  color: #8B5A3C;
+}
+
+/* 主要内容区域 */
+.main-content {
+  flex: 1;
+  background-color: #f5f5f5;
+  overflow: hidden;
+}
+
+.scroll-container {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+/* 会员介绍区域 */
+.membership-intro {
+  padding: 40rpx 30rpx;
+  background: white;
+  margin-bottom: 20rpx;
+}
+
+.intro-header {
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.intro-title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #8B5A3C;
+  display: block;
+  margin-bottom: 20rpx;
+}
+
+.intro-subtitle {
+  font-size: 28rpx;
+  color: #666;
+  display: block;
+}
+
+/* 会员等级卡片 */
+.membership-levels {
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx;
+}
+
+.level-card {
+  background: white;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 8rpx 30rpx rgba(0, 0, 0, 0.08);
+  border: 2rpx solid #f0f0f0;
+  position: relative;
+  overflow: hidden;
+}
+
+.level-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8rpx;
+}
+
+.gold::before {
+  background: linear-gradient(90deg, #FFD700 0%, #FFA500 100%);
+}
+
+.platinum::before {
+  background: linear-gradient(90deg, #C0C0C0 0%, #A8A8A8 100%);
+}
+
+.diamond::before {
+  background: linear-gradient(90deg, #B9F2FF 0%, #87CEEB 100%);
+}
+
+.level-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30rpx;
+  padding-top: 10rpx;
+}
+
+.level-icon {
+  font-size: 50rpx;
+  margin-right: 20rpx;
+}
+
+.level-name {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  flex: 1;
+}
+
+.level-price {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #8B5A3C;
+}
+
+.level-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  padding: 15rpx 0;
+}
+
+.benefit-icon {
+  font-size: 32rpx;
+  margin-right: 20rpx;
+  width: 40rpx;
+  text-align: center;
+}
+
+.benefit-text {
+  font-size: 28rpx;
+  color: #333;
+  flex: 1;
+}
+
+/* 特别优惠区域 */
+.special-offer {
+  background: linear-gradient(135deg, #8B5A3C 0%, #A67C52 100%);
+  margin: 0 30rpx 20rpx;
+  border-radius: 20rpx;
+  padding: 40rpx 30rpx;
+  color: white;
+  text-align: center;
+}
+
+.offer-header {
+  margin-bottom: 20rpx;
+}
+
+.offer-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  display: block;
+}
+
+.offer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15rpx;
+}
+
+.offer-text {
+  font-size: 32rpx;
+  font-weight: 500;
+  display: block;
+}
+
+.offer-desc {
+  font-size: 26rpx;
+  opacity: 0.9;
+  display: block;
+}
+
+/* 加入会员按钮区域 */
+.join-section {
+  padding: 40rpx 30rpx;
+  background: white;
+  margin-bottom: 20rpx;
+}
+
+.join-btn {
+  width: 100%;
+  height: 100rpx;
+  background: linear-gradient(135deg, #8B5A3C 0%, #A67C52 100%);
+  border-radius: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 30rpx rgba(139, 90, 60, 0.3);
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.join-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.join-btn:active::before {
+  left: 100%;
+}
+
+.join-text {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: white;
+  margin-right: 10rpx;
+}
+
+.join-arrow {
+  font-size: 32rpx;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.join-btn:active .join-arrow {
+  transform: translateX(10rpx);
+}

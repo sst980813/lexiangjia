@@ -1,0 +1,167 @@
+<!--membership.wxml-->
+<view class="page-container">
+  <navigation-bar title="会籍申请" color="#8B5A3C" background="#F7E6D3"></navigation-bar>
+  
+  <!-- 主要内容区域 -->
+  <view class="main-content {{safeAreaClass}}" style="{{safeAreaStyle}}">
+    <scroll-view class="scroll-container" scroll-y type="list">
+      
+      <!-- 会员等级选择 -->
+      <view class="membership-selection">
+        <view class="section-title">选择会员等级</view>
+        <view class="level-options">
+          <view class="level-option {{selectedLevel === 'gold' ? 'selected' : ''}}" 
+                bindtap="onSelectLevel" data-level="gold">
+            <view class="option-header">
+              <view class="option-icon">🥇</view>
+              <text class="option-name">黄金会员</text>
+              <text class="option-price">¥99</text>
+            </view>
+            <text class="option-desc">旅居9.5折，康养9.8折</text>
+          </view>
+          
+          <view class="level-option {{selectedLevel === 'platinum' ? 'selected' : ''}}" 
+                bindtap="onSelectLevel" data-level="platinum">
+            <view class="option-header">
+              <view class="option-icon">🥈</view>
+              <text class="option-name">铂金会员</text>
+              <text class="option-price">¥299</text>
+            </view>
+            <text class="option-desc">旅居9.0折，康养9.5折 + 专属客服</text>
+          </view>
+          
+          <view class="level-option {{selectedLevel === 'diamond' ? 'selected' : ''}}" 
+                bindtap="onSelectLevel" data-level="diamond">
+            <view class="option-header">
+              <view class="option-icon">💎</view>
+              <text class="option-name">钻石会员</text>
+              <text class="option-price">¥999</text>
+            </view>
+            <text class="option-desc">旅居8.5折，康养9.0折 + 全权益</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 个人信息填写 -->
+      <view class="form-section">
+        <view class="section-title">个人信息</view>
+        <view class="form-content">
+          
+          <!-- 姓名 -->
+          <view class="form-item">
+            <text class="form-label">姓名 <text class="required">*</text></text>
+            <input class="form-input" 
+                   placeholder="请输入真实姓名" 
+                   value="{{formData.name}}"
+                   bindinput="onInputChange" 
+                   data-field="name" />
+          </view>
+
+          <!-- 手机号 -->
+          <view class="form-item">
+            <text class="form-label">手机号 <text class="required">*</text></text>
+            <input class="form-input" 
+                   placeholder="请输入手机号码" 
+                   value="{{formData.phone}}"
+                   bindinput="onInputChange" 
+                   data-field="phone"
+                   type="number" />
+          </view>
+
+          <!-- 身份证号 -->
+          <view class="form-item">
+            <text class="form-label">身份证号 <text class="required">*</text></text>
+            <input class="form-input" 
+                   placeholder="请输入身份证号码" 
+                   value="{{formData.idCard}}"
+                   bindinput="onInputChange" 
+                   data-field="idCard" />
+          </view>
+
+          <!-- 现住址 -->
+          <view class="form-item">
+            <text class="form-label">现住址 <text class="required">*</text></text>
+            <textarea class="form-textarea" 
+                      placeholder="请输入详细地址" 
+                      value="{{formData.address}}"
+                      bindinput="onInputChange" 
+                      data-field="address"></textarea>
+          </view>
+
+          <!-- 紧急联系人 -->
+          <view class="form-item">
+            <text class="form-label">紧急联系人 <text class="required">*</text></text>
+            <input class="form-input" 
+                   placeholder="请输入紧急联系人姓名" 
+                   value="{{formData.emergencyContact}}"
+                   bindinput="onInputChange" 
+                   data-field="emergencyContact" />
+          </view>
+
+          <!-- 紧急联系人手机号 -->
+          <view class="form-item">
+            <text class="form-label">紧急联系人手机号 <text class="required">*</text></text>
+            <input class="form-input" 
+                   placeholder="请输入紧急联系人手机号" 
+                   value="{{formData.emergencyPhone}}"
+                   bindinput="onInputChange" 
+                   data-field="emergencyPhone"
+                   type="number" />
+          </view>
+
+          <!-- 学历 -->
+          <view class="form-item">
+            <text class="form-label">学历 <text class="required">*</text></text>
+            <picker class="form-picker" 
+                    range="{{educationOptions}}" 
+                    value="{{educationIndex}}"
+                    bindchange="onEducationChange">
+              <view class="picker-text">{{educationOptions[educationIndex] || '请选择学历'}}</view>
+            </picker>
+          </view>
+
+          <!-- 兴趣爱好或特长 -->
+          <view class="form-item">
+            <text class="form-label">兴趣爱好或特长</text>
+            <textarea class="form-textarea" 
+                      placeholder="请填写您的兴趣爱好或特长（选填）" 
+                      value="{{formData.hobbies}}"
+                      bindinput="onInputChange" 
+                      data-field="hobbies"></textarea>
+          </view>
+
+        </view>
+      </view>
+
+      <!-- 费用说明 -->
+      <view class="cost-section">
+        <view class="section-title">费用说明</view>
+        <view class="cost-content">
+          <view class="cost-item">
+            <text class="cost-label">会员费用</text>
+            <text class="cost-value">¥{{selectedPrice}}</text>
+          </view>
+          <view class="cost-item">
+            <text class="cost-label">免费体验</text>
+            <text class="cost-value free">江浙沪旅居体验</text>
+          </view>
+          <view class="cost-divider"></view>
+          <view class="cost-total">
+            <text class="total-label">总计</text>
+            <text class="total-value">¥{{selectedPrice}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 提交按钮 -->
+      <view class="submit-section">
+        <button class="submit-btn {{canSubmit ? 'active' : 'disabled'}}" 
+                bindtap="onSubmit" 
+                disabled="{{!canSubmit}}">
+          <text class="submit-text">确认付款</text>
+        </button>
+      </view>
+
+    </scroll-view>
+  </view>
+</view>

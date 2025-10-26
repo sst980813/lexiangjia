@@ -1,0 +1,154 @@
+<!--travel-detail.wxml-->
+<view class="page-container">
+  <navigation-bar title="旅居详情" color="#8B5A3C" background="#F7E6D3"></navigation-bar>
+  
+  <!-- 主要内容区域 -->
+  <view class="main-content {{safeAreaClass}}" style="{{safeAreaStyle}}">
+    <scroll-view class="scroll-container" scroll-y type="list">
+      
+      <!-- 轮播图 -->
+      <view class="banner-section">
+        <swiper class="banner-swiper" 
+                indicator-dots="{{true}}" 
+                autoplay="{{true}}" 
+                interval="3000" 
+                duration="500">
+          <swiper-item wx:for="{{destination.images}}" wx:key="*this">
+            <image class="banner-image" src="{{item}}" mode="aspectFill"></image>
+          </swiper-item>
+        </swiper>
+        <view class="banner-overlay">
+          <text class="banner-title">{{destination.name}}</text>
+          <text class="banner-location">📍 {{destination.location}}</text>
+        </view>
+      </view>
+
+      <!-- 基本信息 -->
+      <view class="info-section">
+        <view class="info-header">
+          <view class="title-row">
+            <text class="destination-name">{{destination.name}}</text>
+            <view class="rating-info">
+              <text class="rating-star">⭐</text>
+              <text class="rating-score">{{destination.rating}}</text>
+            </view>
+          </view>
+          <text class="destination-location">📍 {{destination.location}}</text>
+        </view>
+
+        <!-- 价格信息 -->
+        <view class="price-section">
+          <view class="price-row">
+            <view class="price-main">
+              <text class="price-label">起价</text>
+              <text class="price-value">¥{{destination.startPrice}}</text>
+              <text class="price-unit">/人/月</text>
+            </view>
+            <!-- <view class="discount-info" wx:if="{{destination.discount}}">
+              <text class="discount-text">会员{{destination.discount}}折</text>
+            </view> -->
+          </view>
+          <text class="price-desc">包含住宿、餐饮、基础服务</text>
+        </view>
+
+        <!-- 特色标签 -->
+        <view class="tags-section">
+          <text class="section-label">特色标签</text>
+          <view class="tags-list">
+            <text class="tag-item" wx:for="{{destination.tags}}" wx:key="*this">
+              {{item}}
+            </text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 详细介绍 -->
+      <view class="description-section">
+        <text class="section-title">详细介绍</text>
+        <text class="description-text">{{destination.description}}</text>
+      </view>
+
+      <!-- 服务特色 -->
+      <view class="features-section">
+        <text class="section-title">服务特色</text>
+        <view class="features-list">
+          <view class="feature-item" wx:for="{{destination.features}}" wx:key="*this">
+            <text class="feature-icon">✨</text>
+            <text class="feature-text">{{item}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 行程安排 -->
+      <view class="schedule-section">
+        <text class="section-title">行程安排</text>
+        <view class="schedule-list">
+          <view class="schedule-item" wx:for="{{destination.schedule}}" wx:key="day">
+            <view class="schedule-day">
+              <text class="day-text">第{{item.day}}天</text>
+            </view>
+            <view class="schedule-content">
+              <text class="schedule-title">{{item.title}}</text>
+              <text class="schedule-desc">{{item.description}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 费用说明 -->
+      <view class="cost-section">
+        <text class="section-title">费用说明</text>
+        <view class="cost-list">
+          <view class="cost-item">
+            <text class="cost-label">包含费用</text>
+            <text class="cost-desc">住宿、三餐、基础医疗服务、活动组织</text>
+          </view>
+          <view class="cost-item">
+            <text class="cost-label">不包含费用</text>
+            <text class="cost-desc">个人消费、交通费、保险费用</text>
+          </view>
+          <view class="cost-item">
+            <text class="cost-label">退改政策</text>
+            <text class="cost-desc">提前7天可免费取消，3-7天收取20%手续费</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 预订须知 -->
+      <view class="notice-section">
+        <text class="section-title">预订须知</text>
+        <view class="notice-list">
+          <view class="notice-item">
+            <text class="notice-icon">📋</text>
+            <text class="notice-text">需提供身份证复印件</text>
+          </view>
+          <view class="notice-item">
+            <text class="notice-icon">🏥</text>
+            <text class="notice-text">建议提供健康证明</text>
+          </view>
+          <view class="notice-item">
+            <text class="notice-icon">📞</text>
+            <text class="notice-text">需填写紧急联系人信息</text>
+          </view>
+          <view class="notice-item">
+            <text class="notice-icon">💊</text>
+            <text class="notice-text">请自备常用药品</text>
+          </view>
+        </view>
+      </view>
+
+    </scroll-view>
+
+    <!-- 底部操作栏 -->
+    <view class="bottom-bar">
+      <view class="price-info">
+        <text class="price-label">起价</text>
+        <text class="price-value">¥{{destination.startPrice}}</text>
+        <text class="price-unit">/人/月</text>
+      </view>
+      <button class="book-btn" bindtap="onBookNow">
+        <text class="book-text">立即预订</text>
+      </button>
+    </view>
+  </view>
+</view>

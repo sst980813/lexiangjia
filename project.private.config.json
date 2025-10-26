@@ -1,5 +1,5 @@
 {
-  "libVersion": "3.10.0",
+  "libVersion": "3.10.3",
   "projectname": "enjoying-home",
   "setting": {
     "urlCheck": true,
@@ -18,5 +18,6 @@
     "bigPackageSizeSupport": false,
     "checkInvalidKey": true,
     "ignoreDevUnusedFiles": true
-  }
+  },
+  "condition": {}
 }

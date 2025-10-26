@@ -75,6 +75,8 @@ navigation-bar {
   padding: 40rpx 30rpx;
   background: white;
   margin-bottom: 20rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 8rpx 30rpx rgba(0, 0, 0, 0.06);
 }
 
 .button-row {
@@ -87,34 +89,116 @@ navigation-bar {
   margin-bottom: 0;
 }
 
+/* 单行按钮容器 */
+.single-button-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 20rpx;
+}
+
 .function-btn {
   width: 48%;
   height: 160rpx;
   background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
-  border-radius: 20rpx;
+  border-radius: 24rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
-  border: 1rpx solid #f0f0f0;
-  transition: all 0.3s ease;
+  box-shadow: 0 6rpx 25rpx rgba(0, 0, 0, 0.08);
+  border: 2rpx solid #f0f0f0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.function-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(139, 90, 60, 0.05) 0%, rgba(127, 179, 211, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .function-btn:active {
-  transform: scale(0.95);
-  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+  transform: scale(0.95) translateY(2rpx);
+  box-shadow: 0 4rpx 15rpx rgba(0, 0, 0, 0.12);
+}
+
+.function-btn:active::before {
+  opacity: 1;
+}
+
+/* 单行按钮样式 */
+.single-btn {
+  width: 100%;
+  height: 180rpx;
+  background: linear-gradient(135deg, #8B5A3C 0%, #A67C52 100%);
+  color: white;
+  box-shadow: 0 8rpx 30rpx rgba(139, 90, 60, 0.3);
+  border: none;
+}
+
+.single-btn .btn-text {
+  color: white;
+  font-weight: 600;
+  font-size: 32rpx;
+}
+
+.single-btn .btn-icon {
+  font-size: 70rpx;
+  filter: drop-shadow(0 2rpx 4rpx rgba(0, 0, 0, 0.2));
 }
 
 .btn-icon {
   font-size: 60rpx;
   margin-bottom: 15rpx;
+  transition: transform 0.3s ease;
+}
+
+.function-btn:active .btn-icon {
+  transform: scale(1.1);
 }
 
 .btn-text {
   font-size: 28rpx;
   color: #333;
   font-weight: 500;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* 不同按钮的特殊样式 */
+.living-icon {
+  color: #4A90E2;
+}
+
+.smart-icon {
+  color: #7B68EE;
+}
+
+.leisure-icon {
+  color: #FF69B4;
+}
+
+.health-icon {
+  color: #32CD32;
+}
+
+.member-icon {
+  color: #FF8C00;
+}
+
+.product-icon {
+  color: #20B2AA;
+}
+
+.benefits-icon {
+  color: #FFD700;
 }
 
 /* 旅游列表区域 */

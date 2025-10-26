@@ -1,0 +1,139 @@
+<!--product-detail.wxml-->
+<view class="page-container">
+  <navigation-bar title="产品详情" color="#8B5A3C" background="#F7E6D3"></navigation-bar>
+  
+  <!-- 主要内容区域 -->
+  <view class="main-content {{safeAreaClass}}">
+    <scroll-view class="scroll-container" scroll-y type="list">
+      
+      <!-- 产品图片 -->
+      <view class="product-image-section">
+        <image class="product-image" src="{{product.image}}" mode="aspectFill"></image>
+        <view class="discount-badge" wx:if="{{product.discount}}">
+          <text class="discount-text">{{product.discount}}折</text>
+        </view>
+      </view>
+
+      <!-- 产品基本信息 -->
+      <view class="product-info-section">
+        <view class="product-header">
+          <text class="product-name">{{product.name}}</text>
+          <view class="product-rating">
+            <text class="rating-star">⭐</text>
+            <text class="rating-score">{{product.rating}}</text>
+            <text class="rating-count">({{product.reviews}}条评价)</text>
+          </view>
+        </view>
+        
+        <text class="product-desc">{{product.description}}</text>
+        
+        <view class="product-tags">
+          <text class="product-tag" wx:for="{{product.tags}}" wx:key="*this">
+            {{item}}
+          </text>
+        </view>
+      </view>
+
+      <!-- 价格信息 -->
+      <view class="price-section">
+        <view class="price-row">
+          <view class="price-main">
+            <text class="price-symbol">¥</text>
+            <text class="price-value">{{product.price}}</text>
+            <text class="price-unit" wx:if="{{product.unit}}">/{{product.unit}}</text>
+          </view>
+          <view class="original-price" wx:if="{{product.originalPrice}}">
+            <text class="original-text">原价：¥{{product.originalPrice}}</text>
+          </view>
+        </view>
+        <view class="price-details">
+          <text class="stock-info">库存：{{product.stock}}件</text>
+          <text class="sales-info">已售：{{product.sales}}件</text>
+        </view>
+      </view>
+
+      <!-- 产品规格 -->
+      <view class="specs-section">
+        <text class="section-title">产品规格</text>
+        <view class="specs-list">
+          <view class="spec-item">
+            <text class="spec-label">产品名称</text>
+            <text class="spec-value">{{product.name}}</text>
+          </view>
+          <view class="spec-item">
+            <text class="spec-label">产品类型</text>
+            <text class="spec-value">{{product.categoryName}}</text>
+          </view>
+          <view class="spec-item">
+            <text class="spec-label">规格</text>
+            <text class="spec-value">{{product.specification}}</text>
+          </view>
+          <view class="spec-item">
+            <text class="spec-label">保质期</text>
+            <text class="spec-value">{{product.shelfLife}}</text>
+          </view>
+          <view class="spec-item">
+            <text class="spec-label">生产厂家</text>
+            <text class="spec-value">{{product.manufacturer}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 产品详情 -->
+      <view class="details-section">
+        <text class="section-title">产品详情</text>
+        <text class="details-text">{{product.details}}</text>
+      </view>
+
+      <!-- 使用方法 -->
+      <view class="usage-section">
+        <text class="section-title">使用方法</text>
+        <text class="usage-text">{{product.usage}}</text>
+      </view>
+
+      <!-- 注意事项 -->
+      <view class="notice-section">
+        <text class="section-title">注意事项</text>
+        <text class="notice-text">{{product.notice}}</text>
+      </view>
+
+      <!-- 用户评价 -->
+      <view class="reviews-section">
+        <text class="section-title">用户评价</text>
+        <view class="reviews-list">
+          <view class="review-item" wx:for="{{product.reviewList}}" wx:key="id">
+            <view class="review-header">
+              <text class="reviewer-name">{{item.name}}</text>
+              <view class="review-rating">
+                <text class="rating-star" wx:for="{{item.rating}}" wx:key="*this">⭐</text>
+              </view>
+            </view>
+            <text class="review-content">{{item.content}}</text>
+            <text class="review-date">{{item.date}}</text>
+          </view>
+        </view>
+      </view>
+
+    </scroll-view>
+
+    <!-- 底部操作栏 -->
+    <view class="bottom-bar">
+      <view class="quantity-selector">
+        <text class="quantity-label">数量：</text>
+        <view class="quantity-controls">
+          <button class="quantity-btn" bindtap="onQuantityChange" data-action="decrease">-</button>
+          <text class="quantity-value">{{quantity}}</text>
+          <button class="quantity-btn" bindtap="onQuantityChange" data-action="increase">+</button>
+        </view>
+      </view>
+      <view class="action-buttons">
+        <button class="add-cart-btn" bindtap="onAddToCart">
+          <text class="btn-text">加入购物车</text>
+        </button>
+        <button class="buy-now-btn" bindtap="onBuyNow">
+          <text class="btn-text">立即购买</text>
+        </button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,88 @@
+<!--shopping-cart.wxml-->
+<view class="page-container">
+  <navigation-bar title="购物车" color="#8B5A3C" background="#F7E6D3"></navigation-bar>
+  
+  <!-- 主要内容区域 -->
+  <view class="main-content {{safeAreaClass}}">
+    <scroll-view class="scroll-container" scroll-y type="list">
+      
+      <!-- 购物车列表 -->
+      <view class="cart-section" wx:if="{{cartItems.length > 0}}">
+        <view class="cart-list">
+          <view class="cart-item" wx:for="{{cartItems}}" wx:key="id">
+            <view class="item-checkbox">
+              <checkbox checked="{{item.selected}}" 
+                        bindchange="onItemSelect" 
+                        data-id="{{item.id}}"></checkbox>
+            </view>
+            <image class="item-image" src="{{item.image}}" mode="aspectFill"></image>
+            <view class="item-info">
+              <text class="item-name">{{item.name}}</text>
+              <text class="item-desc">{{item.description}}</text>
+              <view class="item-tags">
+                <view class="item-tag" wx:for="{{item.tags}}" wx:key="*this" wx:for-item="tag">
+                  <text>{{tag}}</text>
+                </view>
+              </view>
+              <view class="item-footer">
+                <view class="item-price">
+                  <text class="price-symbol">¥</text>
+                  <text class="price-value">{{item.price}}</text>
+                  <text class="price-unit" wx:if="{{item.unit}}">/{{item.unit}}</text>
+                </view>
+                <view class="quantity-controls">
+                  <button class="quantity-btn" 
+                          bindtap="onQuantityChange" 
+                          data-id="{{item.id}}" 
+                          data-action="decrease">-</button>
+                  <text class="quantity-value">{{item.quantity}}</text>
+                  <button class="quantity-btn" 
+                          bindtap="onQuantityChange" 
+                          data-id="{{item.id}}" 
+                          data-action="increase">+</button>
+                </view>
+                      <view class="item-actions">
+              <button class="delete-btn" 
+                      bindtap="onDeleteItem" 
+                      data-id="{{item.id}}">
+                <text class="delete-text">删除</text>
+              </button>
+            </view>
+              </view>
+            </view>
+      
+          </view>
+        </view>
+      </view>
+
+      <!-- 空购物车 -->
+      <view class="empty-cart" wx:if="{{cartItems.length === 0}}">
+        <text class="empty-icon">🛒</text>
+        <text class="empty-text">购物车是空的</text>
+        <text class="empty-desc">快去选购心仪的商品吧</text>
+        <button class="go-shopping-btn" bindtap="onGoShopping">
+          <text class="btn-text">去购物</text>
+        </button>
+      </view>
+
+    </scroll-view>
+
+    <!-- 底部操作栏 -->
+    <view class="bottom-bar" wx:if="{{cartItems.length > 0}}">
+      <view class="select-all">
+        <checkbox checked="{{allSelected}}" bindchange="onSelectAll"></checkbox>
+        <text class="select-all-text">全选</text>
+      </view>
+      <view class="total-info">
+        <text class="total-label">合计：</text>
+        <text class="total-symbol">¥</text>
+        <text class="total-value">{{totalPrice}}</text>
+      </view>
+      <button class="checkout-btn {{selectedItems.length > 0 ? 'active' : 'disabled'}}" 
+              bindtap="onCheckout" 
+              disabled="{{selectedItems.length === 0}}">
+        <text class="checkout-text">结算({{selectedItems.length}})</text>
+      </button>
+    </view>
+  </view>
+</view>

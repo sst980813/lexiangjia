@@ -1,0 +1,100 @@
+<!--travel-destinations.wxml-->
+<view class="page-container">
+  <navigation-bar title="旅居养老" color="#8B5A3C" background="#F7E6D3"></navigation-bar>
+  
+  <!-- 主要内容区域 -->
+  <view class="main-content {{safeAreaClass}}">
+    <scroll-view class="scroll-container" scroll-y type="list"> 
+      <!-- 搜索栏 -->
+      <view class="search-section">
+        <view class="search-bar">
+          <text class="search-icon">🔍</text>
+          <input class="search-input" 
+                 placeholder="搜索目的地..." 
+                 value="{{searchKeyword}}"
+                 bindinput="onSearchInput" />
+        </view>
+      </view>
+
+      <!-- 筛选标签 -->
+      <view class="filter-section">
+        <scroll-view class="filter-scroll" scroll-x>
+          <view class="filter-tags">
+            <view class="filter-tag {{currentFilter === 'all' ? 'active' : ''}}" 
+                  bindtap="onFilterChange" data-filter="all">
+              全部
+            </view>
+            <view class="filter-tag {{currentFilter === 'south' ? 'active' : ''}}" 
+                  bindtap="onFilterChange" data-filter="south">
+              南方
+            </view>
+            <view class="filter-tag {{currentFilter === 'north' ? 'active' : ''}}" 
+                  bindtap="onFilterChange" data-filter="north">
+              北方
+            </view>
+            <view class="filter-tag {{currentFilter === 'coast' ? 'active' : ''}}" 
+                  bindtap="onFilterChange" data-filter="coast">
+              海滨
+            </view>
+            <view class="filter-tag {{currentFilter === 'mountain' ? 'active' : ''}}" 
+                  bindtap="onFilterChange" data-filter="mountain">
+              山区
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+
+      <!-- 目的地列表 -->
+      <view class="destinations-section">
+        <view class="section-header">
+          <text class="section-title">精选目的地</text>
+          <text class="section-count">共{{filteredDestinations.length}}个目的地</text>
+        </view>
+        
+        <view class="destinations-list">
+          <view class="destination-item" 
+                wx:for="{{filteredDestinations}}" 
+                wx:key="id" 
+                bindtap="onDestinationTap" 
+                data-destination="{{item}}">
+            <image class="destination-image" src="{{item.image}}" mode="aspectFill"></image>
+            <view class="destination-info">
+              <view class="destination-header">
+                <text class="destination-name">{{item.name}}</text>
+                <view class="destination-rating">
+                  <text class="rating-star">⭐</text>
+                  <text class="rating-score">{{item.rating}}</text>
+                </view>
+              </view>
+              <text class="destination-location">📍 {{item.location}}</text>
+              <text class="destination-description">{{item.description}}</text>
+              <view class="destination-tags">
+                <view class="destination-tag" wx:for="{{item.tags}}" wx:key="*this" wx:for-item="tag">
+                  <text class="destination-tag-text">{{tag}}</text>
+                </view>
+              </view>
+              <view class="destination-footer">
+                <view class="price-info">
+                  <text class="price-label">起价</text>
+                  <text class="price-value">¥{{item.startPrice}}</text>
+                  <text class="price-unit">/人/月</text>
+                </view>
+                <!-- <view class="discount-info" wx:if="{{item.discount}}">
+                  <text class="discount-text">会员{{item.discount}}折</text>
+                </view> -->
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 空状态 -->
+      <view class="empty-state" wx:if="{{filteredDestinations.length === 0}}">
+        <text class="empty-icon">🔍</text>
+        <text class="empty-text">暂无相关目的地</text>
+        <text class="empty-desc">试试其他筛选条件</text>
+      </view>
+
+    </scroll-view>
+  </view>
+</view>

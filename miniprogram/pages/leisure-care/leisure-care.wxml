@@ -1,0 +1,142 @@
+<!--leisure-care.wxml-->
+<view class="page-container">
+  <navigation-bar title="休闲养老" color="#8B5A3C" background="#F7E6D3"></navigation-bar>
+  
+  <!-- 主要内容区域 -->
+  <view class="main-content {{safeAreaClass}}">
+    <scroll-view class="scroll-container" scroll-y type="list">
+      
+      <!-- 休闲养老介绍 -->
+      <view class="intro-section">
+        <view class="intro-header">
+          <text class="intro-title">休闲养老 乐享晚年</text>
+          <text class="intro-subtitle">丰富多彩的娱乐活动，让您的晚年生活更加精彩</text>
+        </view>
+        <view class="intro-stats">
+          <view class="stat-item">
+            <text class="stat-number">{{totalActivities}}</text>
+            <text class="stat-label">娱乐活动</text>
+          </view>
+          <view class="stat-item">
+            <text class="stat-number">{{activeMembers}}</text>
+            <text class="stat-label">活跃会员</text>
+          </view>
+          <view class="stat-item">
+            <text class="stat-number">{{satisfactionRate}}%</text>
+            <text class="stat-label">满意度</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 活动分类 -->
+      <view class="category-section">
+        <view class="section-header">
+          <text class="section-title">娱乐分类</text>
+        </view>
+        <view class="category-tabs">
+          <view class="category-tab {{currentCategory === 'all' ? 'active' : ''}}" 
+                bindtap="onCategoryChange" data-category="all">
+            全部
+          </view>
+          <view class="category-tab {{currentCategory === 'music' ? 'active' : ''}}" 
+                bindtap="onCategoryChange" data-category="music">
+            音乐
+          </view>
+          <view class="category-tab {{currentCategory === 'dance' ? 'active' : ''}}" 
+                bindtap="onCategoryChange" data-category="dance">
+            舞蹈
+          </view>
+          <view class="category-tab {{currentCategory === 'games' ? 'active' : ''}}" 
+                bindtap="onCategoryChange" data-category="games">
+            棋牌
+          </view>
+          <view class="category-tab {{currentCategory === 'sports' ? 'active' : ''}}" 
+                bindtap="onCategoryChange" data-category="sports">
+            运动
+          </view>
+        </view>
+      </view>
+
+      <!-- 活动列表 -->
+      <view class="activities-section">
+        <view class="section-header">
+          <text class="section-title">精彩活动</text>
+          <text class="section-count">共{{filteredActivities.length}}个活动</text>
+        </view>
+        
+        <view class="activities-list">
+          <view class="activity-item" 
+                wx:for="{{filteredActivities}}" 
+                wx:key="id" 
+                bindtap="onActivityTap" 
+                data-activity="{{item}}">
+            <image class="activity-image" src="{{item.image}}" mode="aspectFill"></image>
+            <view class="activity-info">
+              <view class="activity-header">
+                <text class="activity-title">{{item.title}}</text>
+                <view class="activity-category">
+                  <text class="category-tag">{{item.categoryName}}</text>
+                </view>
+              </view>
+              <text class="activity-description">{{item.description}}</text>
+              <view class="activity-meta">
+                <view class="meta-item">
+                  <text class="meta-icon">📅</text>
+                  <text class="meta-text">{{item.date}}</text>
+                </view>
+                <view class="meta-item">
+                  <text class="meta-icon">⏰</text>
+                  <text class="meta-text">{{item.time}}</text>
+                </view>
+                <view class="meta-item">
+                  <text class="meta-icon">📍</text>
+                  <text class="meta-text">{{item.location}}</text>
+                </view>
+              </view>
+              <view class="activity-footer">
+                <view class="participants">
+                  <text class="participants-icon">👥</text>
+                  <text class="participants-text">{{item.participants}}人参与</text>
+                </view>
+                <view class="activity-status {{item.status}}">
+                  <text class="status-text">{{item.statusText}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 特色推荐 -->
+      <view class="featured-section">
+        <view class="section-header">
+          <text class="section-title">特色推荐</text>
+        </view>
+        <view class="featured-list">
+          <view class="featured-item" 
+                wx:for="{{featuredActivities}}" 
+                wx:key="id" 
+                bindtap="onActivityTap" 
+                data-activity="{{item}}">
+            <image class="featured-image" src="{{item.image}}" mode="aspectFill"></image>
+            <view class="featured-overlay">
+              <text class="featured-title">{{item.title}}</text>
+              <text class="featured-desc">{{item.description}}</text>
+              <view class="featured-badge">
+                <text class="badge-text">{{item.badge}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 空状态 -->
+      <view class="empty-state" wx:if="{{filteredActivities.length === 0}}">
+        <text class="empty-icon">🎵</text>
+        <text class="empty-text">暂无相关活动</text>
+        <text class="empty-desc">试试其他分类</text>
+      </view>
+
+    </scroll-view>
+  </view>
+</view>

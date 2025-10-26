@@ -1,7 +1,7 @@
 <!--index.wxml-->
 
 <view class="page-container">
-  <navigation-bar title="乐享荟" color="#8B5A3C" background="#F7E6D3"></navigation-bar>
+  <navigation-bar title="乐享家" color="#8B5A3C" background="#F7E6D3"></navigation-bar>
   
   <!-- 主要内容区域 -->
   <view class="main-content {{safeAreaClass}}" style="{{safeAreaStyle}}">
@@ -15,25 +15,33 @@
       </view>
     </view>
 
-    <!-- 四个功能按钮 -->
+    <!-- 功能按钮区域 -->
     <view class="function-buttons">
       <view class="button-row">
         <view class="function-btn" bindtap="onButtonTap" data-type="living">
           <view class="btn-icon living-icon">🏡</view>
           <text class="btn-text">旅居养老</text>
         </view>
+        <view class="function-btn" bindtap="onButtonTap" data-type="smart">
+          <view class="btn-icon smart-icon">😊</view>
+          <text class="btn-text">智慧养老</text>
+        </view>
+    
+      </view>
+      <view class="button-row">
         <view class="function-btn" bindtap="onButtonTap" data-type="leisure">
           <view class="btn-icon leisure-icon">🌸</view>
           <text class="btn-text">休闲养老</text>
         </view>
-      </view>
-      <view class="button-row">
-        <view class="function-btn" bindtap="onButtonTap" data-type="happy">
-          <view class="btn-icon happy-icon">😊</view>
-          <text class="btn-text">快乐养老</text>
+        <view class="function-btn" bindtap="onButtonTap" data-type="product">
+          <view class="btn-icon health-icon">🌿</view>
+          <text class="btn-text">康养产品</text>
         </view>
-        <view class="function-btn" bindtap="onButtonTap" data-type="member">
-          <view class="btn-icon member-icon">💎</view>
+      </view>
+      <!-- 会员权益按钮独占一行 -->
+      <view class="single-button-row">
+        <view class="function-btn single-btn" bindtap="onButtonTap" data-type="benefits">
+          <view class="btn-icon benefits-icon">🎁</view>
           <text class="btn-text">会员权益</text>
         </view>
       </view>
@@ -62,3 +70,4 @@
     </scroll-view>
   </view>
 </view>
+
